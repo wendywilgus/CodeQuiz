@@ -14,21 +14,25 @@ var button1 = document.querySelector(".button1");
 var button2 = document.querySelector(".button2");
 var button3 = document.querySelector(".button3");
 var button4 = document.querySelector(".button4");
+var userScore = document.querySelector("#userScore");
+var initials = document.querySelector("#initials");
+var timeRemain = document.querySelector("#timeRemain");
+var submitButton = document.querySelector(".submitButton");
 var correctAnswer = 0;
 
 
-// Start with all hidden, except begin quiz main class
+// Start with all hidden, except begin quiz main class DONE
 container.style.display = 'none';
 endContainer.style.display = 'none';
 highScore.style.display = 'none';
 
-var quizTime = 30;
+var quizTime = 45;
 // quizTime must match HTML text for seconds. 
 
 var currentQuestionData; // this is a holder for question data
 
 
-// array of questions.  function nextQuestion to loop through these. 
+// array of questions.  function nextQuestion to loop through these. DONE
 var quiz = [
     {
         order: 1,
@@ -91,13 +95,13 @@ function countdown() {
         seconds.textContent = quizTime;
         if (quizTime == 0) {
             clearInterval(interval);
-            endContainer.style.display = 'block';
+            allDone();
         }
     }, 1000);
 }
 
 function nextQuestion() {
-    // if array is empty then All done! and hide question.  Check quiz.length.  If =0 then all done. 
+    // if array is empty then All done! and hide question.  DONE
     if (currentQuestionData = quiz.shift())  {
     console.log("currentQuestionData", currentQuestionData);
     question.textContent = currentQuestionData.question;
@@ -118,7 +122,8 @@ function checkAnswer()  {
         console.log(correctAnswer);
         // set feedback
     } else {
-        // fail reduce timer!
+        quizTime -=5; 
+        // fail reduce timer! DONE
         // set feedback
     }
     nextQuestion();
@@ -131,6 +136,15 @@ function allDone()  {
     container.style.display = 'none';
     endContainer.style.display = 'block';
     highScore.style.display = 'none';
+    seconds.style.display = 'none';
+    timeRemain.style.display = 'none';
+
+    userScore.textContent = correctAnswer;
+
+}
+
+function highScore()    {
+
 }
 
 startButton.addEventListener("click", function () {
@@ -145,4 +159,13 @@ answer1.addEventListener("click", checkAnswer);
 answer2.addEventListener("click", checkAnswer);
 answer3.addEventListener("click", checkAnswer);
 answer4.addEventListener("click", checkAnswer);
+
+submitButton.addEventListener("click", function(event)  {
+    if (!initials.value)    {
+        window.alert("Please enter your initials!");
+        return;
+    } else {
+        allDone(event);
+    }
+});
 
