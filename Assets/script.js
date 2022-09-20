@@ -28,7 +28,7 @@ var quizTime = 30;
 var currentQuestionData; // this is a holder for question data
 
 
-// array of questions.  Create function to loop through these. 
+// array of questions.  function nextQuestion to loop through these. 
 var quiz = [
     {
         order: 1,
@@ -98,13 +98,16 @@ function countdown() {
 
 function nextQuestion() {
     // if array is empty then All done! and hide question.  Check quiz.length.  If =0 then all done. 
-    currentQuestionData = quiz.shift();
+    if (currentQuestionData = quiz.shift())  {
     console.log("currentQuestionData", currentQuestionData);
     question.textContent = currentQuestionData.question;
     answer1.textContent = currentQuestionData.choices[0];
     answer2.textContent = currentQuestionData.choices[1];
     answer3.textContent = currentQuestionData.choices[2];
     answer4.textContent = currentQuestionData.choices[3];
+    } else  {
+        allDone();
+    }
 }
 
 function checkAnswer()  {
@@ -112,7 +115,7 @@ function checkAnswer()  {
     console.log("currentQuestionData.answer", currentQuestionData.answer);
     if(this.textContent === currentQuestionData.answer) {
         correctAnswer = correctAnswer + 10; 
-        // console.log(correctAnswer);
+        console.log(correctAnswer);
         // set feedback
     } else {
         // fail reduce timer!
@@ -122,6 +125,13 @@ function checkAnswer()  {
 }
 
 //function show ending with all done and then high score. Use JSON to stringify and then parse data. If text for initials is empty, display message--see M4A21/22.  Go back button to refill question array. 
+function allDone()  {
+    // console.log("allDone");
+    main.style.display = 'none';
+    container.style.display = 'none';
+    endContainer.style.display = 'block';
+    highScore.style.display = 'none';
+}
 
 startButton.addEventListener("click", function () {
     // console.log("hello");

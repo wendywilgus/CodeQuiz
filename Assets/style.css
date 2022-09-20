@@ -16,7 +16,7 @@ body {
     font-family: 'Archivo', sans-serif;
 }
 
-.main   {
+.main, .endContainer   {
     display: flexbox;
     justify-content: center;
     margin: 20px;
