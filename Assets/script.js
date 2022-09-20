@@ -1,38 +1,38 @@
 var main = document.querySelector(".main");
 var startButton = document.querySelector(".startButton");
-var questions = document.querySelector(".questions");
+var container = document.querySelector(".container");
+var question = document.querySelector(".question");
 var ask = document.querySelector(".ask");
 var endContainer = document.querySelector(".endContainer");
 var highScore = document.querySelector(".highScore");
 var seconds = document.querySelector("#seconds");
+var answer1 = document.querySelector(".answer1");
+var answer2 = document.querySelector(".answer2");
+var answer3 = document.querySelector(".answer3");
+var answer4 = document.querySelector(".answer4");
+var button1 = document.querySelector(".button1");
+var button2 = document.querySelector(".button2");
+var button3 = document.querySelector(".button3");
+var button4 = document.querySelector(".button4");
 
-questions.style.display = 'none';
+
+// Start with all hidden, except begin quiz main class
+container.style.display = 'none';
 endContainer.style.display = 'none';
 highScore.style.display = 'none';
-startButton.addEventListener("click", function () {
-    // console.log("hello");
-    questions.style.display = 'block';
-    main.style.display = 'none';
-    countdown();
-})
-var quizTime = 30;
-function countdown() {
-    var interval = setInterval(function () {
-        quizTime--
-        // console.log(quizTime);
-        seconds.textContent = quizTime;
-        if (quizTime == 0) {
-            clearInterval(interval);
-            endContainer.style.display = 'block';
-        }
-    }, 1000);
-}
 
+var quizTime = 30;
+// quizTime must match HTML text for seconds. 
+
+var currentQuestionData; // this is a holder for question data
+
+
+// array of questions.  Create function to loop through these. 
 var quiz = [
     {
         order: 1,
         question: "Commonly used data types DO NOT include:",
-        answer: "3. alert",
+        answer: "3. alerts",
         choices: [
             "1. strings",
             "2. booleans",
@@ -68,16 +68,69 @@ var quiz = [
             "1. commas",
             "2. curly brackets",
             "3. quotes",
-            "4. all of the above",]
+            "4. parenthesis",]
     },
     {
         order: 5,
         question: "Arrays in JavaScript can be used to store _____.",
-        answer: "4. parenthesis",
+        answer: "4. all of the above",
         choices: [
             "1. numbers and strings",
             "2. other arrays",
             "3. booleans",
             "4. all of the above",]
     },
+
 ];
+
+function countdown() {
+    var interval = setInterval(function () {
+        quizTime--
+        // console.log(quizTime);
+        seconds.textContent = quizTime;
+        if (quizTime == 0) {
+            clearInterval(interval);
+            endContainer.style.display = 'block';
+        }
+    }, 1000);
+}
+
+function nextQuestion() {
+    // if array is empty then All done! and hide question.  Check quiz.length.  If =0 then all done. 
+    currentQuestionData = quiz.shift();
+    console.log("currentQuestionData", currentQuestionData);
+    question.textContent = currentQuestionData.question;
+    answer1.textContent = currentQuestionData.choices[0];
+    answer2.textContent = currentQuestionData.choices[1];
+    answer3.textContent = currentQuestionData.choices[2];
+    answer4.textContent = currentQuestionData.choices[3];
+}
+
+function checkAnswer()  {
+    console.log("checkAnswer", this.textContent);
+    console.log("currentQuestionData.answer", currentQuestionData.answer);
+    if(this.textContent === currentQuestionData.answer) {
+        // set score 
+        // set feedback
+    } else {
+        // fail reduce timer!
+        // set feedback
+    }
+    nextQuestion();
+}
+
+//function show ending with all done and then high score. Use JSON to stringify and then parse data. If text for initials is empty, display message--see M4A21/22
+
+startButton.addEventListener("click", function () {
+    // console.log("hello");
+    container.style.display = 'block';
+    main.style.display = 'none';
+    countdown();
+    nextQuestion();
+})
+
+answer1.addEventListener("click", checkAnswer);
+answer2.addEventListener("click", checkAnswer);
+answer3.addEventListener("click", checkAnswer);
+answer4.addEventListener("click", checkAnswer);
+

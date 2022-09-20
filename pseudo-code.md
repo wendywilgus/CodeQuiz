@@ -13,7 +13,7 @@ Timer begins at 75.
         timer continues
         adds 11 to score
     b. incorrect: 
-        10 seconds time subtracted from clock
+        5 seconds time subtracted from clock
         next question appears with "Wrong!" in the footer
     d. repeat until all five questions are over or time is up
 

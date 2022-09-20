@@ -31,14 +31,14 @@ h1  {
     font-weight: bold;
 }
 
-h2  {
+h2, .question  {
     text-align: leftr;
     color:darkgreen;
     font-family: "Arial";
 }
 
-.button button{
-    Position: center;
+.button, button, .answer1, .answer2, .answer3, .answer4{
+    position: center;
     font-size: 15px;
     background-color: darkgreen;
     border: none;
@@ -47,13 +47,14 @@ h2  {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 5px;
+    width: 250px;
 }
 
 button:hover, button:focus, button:active, button:visited   {
     background-color: orangered;
 }
 
-.questions  {
+.container {
     text-align: left;
 }
 
