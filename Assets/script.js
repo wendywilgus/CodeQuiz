@@ -14,6 +14,7 @@ var button1 = document.querySelector(".button1");
 var button2 = document.querySelector(".button2");
 var button3 = document.querySelector(".button3");
 var button4 = document.querySelector(".button4");
+var correctAnswer = 0;
 
 
 // Start with all hidden, except begin quiz main class
@@ -110,7 +111,8 @@ function checkAnswer()  {
     console.log("checkAnswer", this.textContent);
     console.log("currentQuestionData.answer", currentQuestionData.answer);
     if(this.textContent === currentQuestionData.answer) {
-        // set score 
+        correctAnswer = correctAnswer + 10; 
+        // console.log(correctAnswer);
         // set feedback
     } else {
         // fail reduce timer!
@@ -119,7 +121,7 @@ function checkAnswer()  {
     nextQuestion();
 }
 
-//function show ending with all done and then high score. Use JSON to stringify and then parse data. If text for initials is empty, display message--see M4A21/22
+//function show ending with all done and then high score. Use JSON to stringify and then parse data. If text for initials is empty, display message--see M4A21/22.  Go back button to refill question array. 
 
 startButton.addEventListener("click", function () {
     // console.log("hello");
