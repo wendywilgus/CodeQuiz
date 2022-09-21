@@ -14,6 +14,7 @@ var button1 = document.querySelector(".button1");
 var button2 = document.querySelector(".button2");
 var button3 = document.querySelector(".button3");
 var button4 = document.querySelector(".button4");
+var footerText = document.querySelector(".footerText");
 var feedback = document.querySelector(".feedback");
 var userScore = document.querySelector("#userScore");
 var initials = document.querySelector("#initials");
@@ -116,16 +117,23 @@ function nextQuestion() {
     }
 }
 
-function checkAnswer()  {
+function checkAnswer(answer)  {
     console.log("checkAnswer", this.textContent);
     console.log("currentQuestionData.answer", currentQuestionData.answer);
+    
+    var footerText = document.getElementById("footerText");
+    var feedback = document.getElementById("feedback");
+    footerText.style.display = "block";
+    feedback.style.display = "block";
+
     if(this.textContent === currentQuestionData.answer) {
         correctAnswer = correctAnswer + 10; 
-        feedback
+        feedback.textContent = "Correct!";
         console.log(correctAnswer);
         // set feedback
     } else {
         quizTime -=5; 
+        feedback.textContent = "Wrong!";
         // fail reduce timer! DONE
         // set feedback
     }
