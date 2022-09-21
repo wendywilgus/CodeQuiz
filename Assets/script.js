@@ -14,11 +14,13 @@ var button1 = document.querySelector(".button1");
 var button2 = document.querySelector(".button2");
 var button3 = document.querySelector(".button3");
 var button4 = document.querySelector(".button4");
+var feedback = document.querySelector(".feedback");
 var userScore = document.querySelector("#userScore");
 var initials = document.querySelector("#initials");
 var timeRemain = document.querySelector("#timeRemain");
 var submitButton = document.querySelector(".submitButton");
 var correctAnswer = 0;
+var initialsInput = "";
 
 
 // Start with all hidden, except begin quiz main class DONE
@@ -119,6 +121,7 @@ function checkAnswer()  {
     console.log("currentQuestionData.answer", currentQuestionData.answer);
     if(this.textContent === currentQuestionData.answer) {
         correctAnswer = correctAnswer + 10; 
+        feedback
         console.log(correctAnswer);
         // set feedback
     } else {
@@ -139,13 +142,33 @@ function allDone()  {
     seconds.style.display = 'none';
     timeRemain.style.display = 'none';
 
-    userScore.textContent = correctAnswer;
+    
 
 }
 
-function highScore()    {
+function endScore()    {
+    main.style.display = 'none';
+    container.style.display = 'none';
+    endContainer.style.display = 'none';
+    highScore.style.display = 'block';
+    seconds.style.display = 'none';
+    timeRemain.style.display = 'none';
 
+
+
+    
+    // displayAllScores();
+    // clearScoresBtn();
+    // goBackBtn();
+    // viewScoresBtn.remove();
+  
+
+//   results.append(initialsInput);
+//   results.append(postScoreBtn);
 }
+
+
+
 
 startButton.addEventListener("click", function () {
     // console.log("hello");
@@ -165,7 +188,23 @@ submitButton.addEventListener("click", function(event)  {
         window.alert("Please enter your initials!");
         return;
     } else {
-        allDone(event);
+        initials.textContent = initialsInput;
+        userScore.textContent = correctAnswer;
+    
+
+        document.getElementById = initialsInput;
+        document.getElementById = correctAnswer;
+        
+        var userData = [
+        initialsInput,
+        correctAnswer,
+        ];
+        
+        const myJSON = JSON.stringify(userData);
+        console.log(userData);
     }
+        
+    endScore(event);
+
 });
 
