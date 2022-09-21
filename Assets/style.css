@@ -37,7 +37,7 @@ h2, .question  {
     font-family: "Arial";
 }
 
-.button, button, .answer1, .answer2, .answer3, .answer4{
+.button, button, .answer1, .answer2, .answer3, .answer4, .goback, .clear{
     position: center;
     font-size: 15px;
     background-color: darkgreen;
@@ -49,6 +49,8 @@ h2, .question  {
     margin-top: 5px;
     width: 250px;
 }
+
+
 
 button:hover, button:focus, button:active, button:visited   {
     background-color: orangered;

@@ -20,6 +20,7 @@ var userScore = document.querySelector("#userScore");
 var initials = document.querySelector("#initials");
 var timeRemain = document.querySelector("#timeRemain");
 var submitButton = document.querySelector(".submitButton");
+var goBack = document.querySelector(".goBack");
 var correctAnswer = 0;
 var initialsInput = "";
 
@@ -122,7 +123,7 @@ function checkAnswer(answer)  {
     console.log("currentQuestionData.answer", currentQuestionData.answer);
     
     var footerText = document.getElementById("footerText");
-    var feedback = document.getElementById("feedback");
+    var feedback = document.getElementById("feedback")
     footerText.style.display = "block";
     feedback.style.display = "block";
 
@@ -150,11 +151,12 @@ function allDone()  {
     seconds.style.display = 'none';
     timeRemain.style.display = 'none';
 
-    
+    userScore.textContent = correctAnswer;
 
 }
 
-function endScore()    {
+function endScore(event)    {
+    event.preventDefault();
     main.style.display = 'none';
     container.style.display = 'none';
     endContainer.style.display = 'none';
@@ -216,3 +218,7 @@ submitButton.addEventListener("click", function(event)  {
 
 });
 
+goBack.addEventListener("click", function() {
+    main.style.display = "block";
+    highScore.style.display = "none";
+});
