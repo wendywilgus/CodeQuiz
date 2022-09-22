@@ -14,8 +14,7 @@
     <header class="header">
         <a id="highScore">View high scores</a>
         <div class="timer">
-            <a id="timeRemain">Time</a>
-            <a id="seconds">45</a>
+            Time: <a id="seconds">50</a>
         </div>
     </header>
 
@@ -46,7 +45,8 @@
         <h1>All done!</h1>
         <h2>Your final score is: <span id="userScore"></span></h2>
         <form>
-            <p>Enter initials: <input id="initials" type="text"></p>
+            <label for="initials">Enter initials</label>
+            <input id="initials" type="text" name="initials">
             <div class="submitButton"><button type="button">Submit</button>
             </div>
         </form>
@@ -58,7 +58,7 @@
     <div class="highScore">
         <h1>High scores<h1>
             <div id="listHighScores"></div>
-            
+
             <p> <button type="button" class="goBack">Go back</button>
                 <button type="button" class="clear">Clear high scores</button>
             </p>
