@@ -1,3 +1,4 @@
+var header = document.querySelector(".header");
 var main = document.querySelector(".main");
 var startButton = document.querySelector(".startButton");
 var container = document.querySelector(".container");
@@ -24,6 +25,8 @@ var runningScore = 0;
 var feedback = document.getElementById("feedback");
 var footerText = document.getElementById("footerText");
 var listHighScores = document.getElementById("listHighScores");
+var viewHighScore = document.querySelector("#viewHighScore");
+var clear = document.querySelector(".clear");
 
 // retrive saved scores from local storage, or set to emptyi array.
 var savedHighScoresArray = JSON.parse(localStorage.getItem("savedScores")) || [];
@@ -43,19 +46,20 @@ var currentQuestionData; // this is a holder for question data
 // array of questions.  function nextQuestion to loop through these. DONE
 var quiz = [];
 var interval;
+var quizTime = 50;
 
 function countdown() {
-    console.log("countdown");
+    // console.log("countdown");
     quizTime = 50;
-    interval = setInterval(function () {
-        console.log(quizTime);
+    var interval = setInterval(function () {
+        // console.log(quizTime);
         quizTime--;
-        seconds = document.querySelector("#seconds");
         seconds.textContent = quizTime;
         if (quizTime <= 0) {
             clearInterval(interval);
             allDone();
-            seconds.textContent = 'Time is up!';
+            timerContainer.style.display = 'block';
+            timerContainer.textContent = "Time is up!";
         }
     }, 1000);
     console.log('created interval', interval);
@@ -156,7 +160,7 @@ function checkAnswer(answer) {
 //function show ending with all done and then high score. Use JSON to stringify and then parse data. If text for initials is empty, display message--see M4A21/22.  Go back button to refill question array. 
 function allDone() {
     console.log("interval ", interval);
-    clearInterval(interval);
+    // clearInterval(interval);
     main.style.display = 'none';
     container.style.display = 'none';
     endContainer.style.display = 'block';
@@ -182,8 +186,7 @@ function endScore(event) {
     for ( i = 0; i < savedHighScoresArray.length; i++)  {
         var newDivRow = document.createElement("div");
         newDivRow.innerHTML = savedHighScoresArray[i].name + ": " + savedHighScoresArray[i].score;
-        console.log(savedHighScoresArray[i].name + ": " + savedHighScoresArray[i].score);
-        listHighScores.appendChild(newDivRow);
+        listHighScores.append(newDivRow);
     }
 }
 
@@ -224,3 +227,11 @@ goBack.addEventListener("click", function () {
     highScore.style.display = "none";
 });
 
+viewHighScore.addEventListener("click", function ()   {
+    endScore(event);
+})
+
+clear.addEventListener("click", function () {
+    window.localStorage.clear("savedScores");
+    listHighScores.style.display = "none";
+})

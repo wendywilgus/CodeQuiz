@@ -10,7 +10,7 @@ body {
     padding: 12px;
 }
 
-#highScore, .timer, #seconds  {
+#viewHighScore, .timer, #seconds  {
     color: orangered;
     font-weight: bold;
     font-family: 'Archivo', sans-serif;
