@@ -47,7 +47,59 @@ var currentQuestionData; // this is a holder for question data
 var quiz = [];
 var interval;
 var quizTime = 50;
+var questionCount = 1;
 
+var quiz = [
+    {
+        order: 1,
+        question: "Commonly used data types DO NOT include:",
+        answer: "3. alerts",
+        choices: [
+            "1. strings",
+            "2. booleans",
+            "3. alerts",
+            "4. numbers",]
+    },
+    {
+        order: 2,
+        question: "The condition in an if/else statement is enclosed with:",
+        answer: "2. curly brackets",
+        choices: [
+            "1. quotes",
+            "2. curly brackets",
+            "3. parenthesis",
+            "4. square brackets",]
+    },
+    {
+        order: 3,
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answer: "4. console.log",
+        choices: [
+            "1. JavaScript",
+            "2. terminal/bash",
+            "3. for loops",
+            "4. console.log",]
+    },
+    {
+        order: 4,
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        answer: "4. parenthesis",
+        choices: [
+            "1. commas",
+            "2. curly brackets",
+            "3. quotes",
+            "4. parenthesis",]
+    },
+    {
+        order: 5,
+        question: "Arrays in JavaScript can be used to store _____.",
+        answer: "4. all of the above",
+        choices: [
+            "1. numbers and strings",
+            "2. other arrays",
+            "3. booleans",
+            "4. all of the above",]
+    }]
 function countdown() {
     // console.log("countdown");
     quizTime = 50;
@@ -60,66 +112,18 @@ function countdown() {
             allDone();
             timerContainer.style.display = 'block';
             timerContainer.textContent = "Time is up!";
+        } else if (questionCount >= quiz.length +1) {
+            clearInterval(interq);
+            allDone();
         }
     }, 1000);
-    console.log('created interval', interval);
 }
 
 function init() {
     console.log('init');
     timerContainer.style.display = 'block';
     feedback.textContent = "";
-    quiz = [
-        {
-            order: 1,
-            question: "Commonly used data types DO NOT include:",
-            answer: "3. alerts",
-            choices: [
-                "1. strings",
-                "2. booleans",
-                "3. alerts",
-                "4. numbers",]
-        },
-        {
-            order: 2,
-            question: "The condition in an if/else statement is enclosed with:",
-            answer: "2. curly brackets",
-            choices: [
-                "1. quotes",
-                "2. curly brackets",
-                "3. parenthesis",
-                "4. square brackets",]
-        },
-        {
-            order: 3,
-            question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-            answer: "4. console.log",
-            choices: [
-                "1. JavaScript",
-                "2. terminal/bash",
-                "3. for loops",
-                "4. console.log",]
-        },
-        {
-            order: 4,
-            question: "String values must be enclosed within _____ when being assigned to variables.",
-            answer: "4. parenthesis",
-            choices: [
-                "1. commas",
-                "2. curly brackets",
-                "3. quotes",
-                "4. parenthesis",]
-        },
-        {
-            order: 5,
-            question: "Arrays in JavaScript can be used to store _____.",
-            answer: "4. all of the above",
-            choices: [
-                "1. numbers and strings",
-                "2. other arrays",
-                "3. booleans",
-                "4. all of the above",]
-        }]
+    
 }
 
 function nextQuestion() {
