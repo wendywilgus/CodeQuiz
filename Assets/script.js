@@ -48,6 +48,7 @@ var quiz = [];
 var interval;
 var quizTime = 50;
 var questionCount = 1;
+var questionNumber = 0;
 
 var quiz = [
     {
@@ -106,7 +107,7 @@ function countdown() {
     var interval = setInterval(function () {
         // console.log(quizTime);
         quizTime--;
-        seconds.textContent = quizTime;
+        seconds.textContent = "Time left: " = quizTime + " s";
         if (quizTime <= 0) {
             clearInterval(interval);
             allDone();
@@ -120,9 +121,11 @@ function countdown() {
 }
 
 function init() {
-    console.log('init');
+    questionNumber = 0;
     timerContainer.style.display = 'block';
     feedback.textContent = "";
+    countdown();
+    nextQuestion(questionNumber);
     
 }
 
